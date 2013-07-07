@@ -1,0 +1,16 @@
+<!-- Alliance - Eastern Kingdoms to Kalimdor - Uldum Portal -->				
+<If Condition="Me.MapId == 0" >
+	<CustomBehavior File="FlyTo" 
+					X="-8231.121" Y="426.3492" Z="117.896" />							
+	<CustomBehavior File="ForcedDismount" />
+	<RunTo X="-8232.501" Y="420.0598" Z="117.6352" />
+	<CustomBehavior File="InteractWith" 
+					MobId="207695" 
+					ObjectType="Gameobject" 
+					Range="4.75" 
+					NumOfTimes="1"  
+					X="-9007.58" Y="871.8698" Z="129.692154" />
+	<CustomBehavior File="WaitTimer" 
+					WaitTime="12000" />
+	<RunTo X="-9417.508" Y="-959.364" Z="113.6076" />
+</If>

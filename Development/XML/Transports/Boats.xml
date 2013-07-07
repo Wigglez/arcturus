@@ -1,0 +1,82 @@
+<!-- Alliance - Eastern Kingdoms to  Valgarde in the Howling Fjord -->
+<If Condition="Me.MapId == 0" >
+	<CustomBehavior File="FlyTo" X="-3691.205" Y="-604.9369" Z="4.289214" />
+	<CustomBehavior File="ForcedDismount" />
+	<CustomBehavior File="UseTransport" 
+					TransportId="181688" 
+					WaitAtX="-3684.419" 
+					WaitAtY="-600.1639" 
+					WaitAtZ="4.367113"
+					TransportStartX="-3674.43" 
+					TransportStartY="-586.74" 
+					TransportStartZ="0.0416"
+					StandOnX="-3672.219" 
+					StandOnY="-592.2634" 
+					StandOnZ="9.477744"
+					TransportEndX="584.0138" 
+					TransportEndY="-5118.85547" 
+					TransportEndZ="0.004170269"	
+					GetOffX="593.8839" 
+					GetOffY="-5102.632" 
+					GetOffZ="5.260393" />
+</If>
+
+
+<!-- Alliance - Nothrend to Stormwind -->
+<If Condition="Me.MapId == 571" >
+	<CustomBehavior File="FlyTo"  X="5731.763" Y="1015.778" Z="174.4795" />
+	<CustomBehavior File="ForcedDismount" />
+	<CustomBehavior File="WaitTimer" 
+					WaitTime="1000" />
+	<CustomBehavior File="InteractWith" 
+					MobId="191230" 
+					ObjectType="Gameobject" 
+					Range="4.75" 
+					NumOfTimes="1"  
+					X="5731.57373" 
+					Y="1015.09253" 
+					Z="174.479324" />
+	<CustomBehavior File="WaitTimer" 
+					WaitTime="10000" />
+	<RunTo X="5803.281" Y="626.3439" Z="647.5372" />
+	<RunTo X="5759.243" Y="677.8333" Z="642.776" />
+	<RunTo X="5720.719" Y="724.3422" Z="641.5389" />
+	<CustomBehavior File="WaitTimer" 
+					WaitTime="1000" />
+	<CustomBehavior File="InteractWith" 
+					MobId="190960" 
+					ObjectType="Gameobject" 
+					Range="4.75" 
+					NumOfTimes="1"  X="5719.184" Y="719.6667" Z="641.727844" />
+	<CustomBehavior File="WaitTimer" 
+					WaitTime="20000" /> 
+</If>
+
+
+<!-- Alliance - Eastern Kingdoms to Kalimdor - Ratchet -->
+<If Condition="Me.MapId == 0" >
+	<CustomBehavior File="FlyTo" X="-10353.59" Y="-7.647873" Z="284.1171" />
+	<CustomBehavior File="FlyTo" X="-14281.86" Y="564.9252" Z="7.45587" />
+	<CustomBehavior File="ForcedDismount" />	
+	<CustomBehavior File="UseTransport" 
+					TransportId="20808" 
+					WaitAtX="-14281.86" 
+					WaitAtY="564.9252" 
+					WaitAtZ="7.45587"
+					TransportStartX="-14277.74" 
+					TransportStartY="582.86" 
+					TransportStartZ="0.015"
+					StandOnX="-14271.49" 
+					StandOnY="581.3417" 
+					StandOnZ="6.019351"
+					TransportEndX="-1005.613" 
+					TransportEndY="-3841.648" 
+					TransportEndZ="0.03330701"	
+					GetOffX="-997.8598" 
+					GetOffY="-3824.981" 
+					GetOffZ="5.466243" />								
+	<CustomBehavior File="WaitTimer" 
+					WaitTime="1000" />
+	<RunTo X="-984.0112" Y="-3801.92" Z="5.412419" />
+</If>
+				

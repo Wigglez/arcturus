@@ -6,11 +6,34 @@
  <!--    Developer Tools -> Console    -->
  Logging.Write("AreaID: {0}", StyxWoW.Me.HearthstoneAreaId);
 
+ <!-- format -->
+ AreaID:  -  - 
+ 
+ 
+ 
+ 
+ 
 <!-- Eastern Kingdoms -->
-5148 - Trade District
+AreaID: 5148 - Trade District - Stormwind
+AreaID: 108 - Sentinel Hill - Westfall - quest not complete
+AreaID:  - Sentinel Hill - Westfall  - quest complete
+AreaID: 5628 - Iron Summit - Searing Gorge
+
+
+
+
+
+
 
 <!-- Kalimdor -->
-5170 - Valley of Strength 
+AreaID: 5170 - Valley of Strength - Orgrimmar
+AreaID: 4010 - Mudsprocket - Dustwallow Marsh
+
+
+
+
+
+
 
 <!-- Outlands -->
 
