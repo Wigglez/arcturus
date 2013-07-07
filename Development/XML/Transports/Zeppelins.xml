@@ -1,0 +1,93 @@
+<!-- Orgrimmar -->
+
+<!-- Orgrimmar to Grom'gol Base Camp -->
+<CustomBehavior File="UseTransport" 
+				TransportId="175080" 
+				WaitAtX="1869.635" 
+				WaitAtY="-4419.227" 
+				WaitAtZ="135.2332"								
+				TransportStartX="1880.818" 
+				TransportStartY="-4435.269" 
+				TransportStartZ="152.8608"								
+				StandOnX="1883.553" 
+				StandOnY="-4419.312" 
+				StandOnZ="136.8681"
+				TransportEndX="-12464.34" 
+				TransportEndY="233.1597" 
+				TransportEndZ="49.53437"	
+				GetOffX="-12445.94" 
+				GetOffY="218.9818" 
+				GetOffZ="31.86087" />	
+				
+<!-- Orgrimmar to Undercity -->
+<CustomBehavior File="UseTransport" 
+				TransportId="164871" 
+				WaitAtX="1840.103" 
+				WaitAtY="-4387.908" 
+				WaitAtZ="135.2331"								
+				TransportStartX="1833.509" 
+				TransportStartY="-4391.543" 
+				TransportStartZ="152.7679"								
+				StandOnX="1838.313" 
+				StandOnY="-4377.212" 
+				StandOnZ="136.4679"
+				TransportEndX="2062.376" 
+				TransportEndY="292.998" 
+				TransportEndZ="114.973"	
+				GetOffX="2066.693" 
+				GetOffY="287.1619" 
+				GetOffZ="97.03147" />	
+				
+				
+				
+				
+				
+				
+				
+<!-- Grom'gol Base Camp -->
+				
+<!-- Grom'gol Base Camp to Orgrimmar -->
+<CustomBehavior File="UseTransport" 
+				TransportId="175080" 
+				WaitAtX="-12445.94" 
+				WaitAtY="218.9818" 
+				WaitAtZ="31.86087"								
+				TransportStartX="-12464.34" 
+				TransportStartY="233.1597" 
+				TransportStartZ="49.53437"								
+				StandOnX="-12463.48" 
+				StandOnY="218.5811" 
+				StandOnZ="33.50526"
+				TransportEndX="1880.818" 
+				TransportEndY="-4435.269" 
+				TransportEndZ="152.8608"	
+				GetOffX="1869.635" 
+				GetOffY="-4419.227" 
+				GetOffZ="135.2332" />	
+				
+
+				
+				
+				
+				
+
+<!-- Undercity -->
+
+<!-- Undercity to Orgrimmar -->
+<CustomBehavior File="UseTransport" 
+				TransportId="164871" 
+				WaitAtX="2070.944" 
+				WaitAtY="289.1729" 
+				WaitAtZ="97.03168"								
+				TransportStartX="2062.376" 
+				TransportStartY="292.998" 
+				TransportStartZ="114.973"								
+				StandOnX="2076.912" 
+				StandOnY="297.1449" 
+				StandOnZ="98.67268"
+				TransportEndX="1833.509" 
+				TransportEndY="-4391.543" 
+				TransportEndZ="152.7679"	
+				GetOffX="1840.103" 
+				GetOffY="-4387.908" 
+				GetOffZ="135.2331" />	
