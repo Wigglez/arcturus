@@ -1,0 +1,34 @@
+if me is n tristfall glades run to <Hotspot X="1719.55" Y="-836.9488" Z="60.13596" />
+
+     																2:52 AM
+if me is n western plaguelands runto <Hotspot X="774.1704" Y="-2426.62" Z="174.9689" />
+
+     																2:54 AM
+if me is n hinterlands runto X="-690.36" Y="-2458.024" Z="93.29036" />
+
+     																2:55 AM
+if me is n arathi highlands runto <Hotspot X="-2465.123" Y="-2503.621" Z="78.50751" />
+
+if me is n wetlands runto X="-4685.485" Y="-2698.62" Z="318.7357" />
+
+
+
+
+
+
+if me is horde in lock modan runto X="-4685.485" Y="-2698.62" Z="318.7357" />
+
+runlikehell to 
+
+<Hotspot X="-4685.485" Y="-2698.62" Z="318.7357" />
+<Hotspot X="-4810.242" Y="-2610.968" Z="348.7018" />
+<Hotspot X="-5175.922" Y="-2673.714" Z="351.9702" />
+<Hotspot X="-5485.206" Y="-2738.133" Z="364.1656" />
+<Hotspot X="-5636.741" Y="-2785.888" Z="364.879" />
+
+merge with ally
+
+runto
+
+enters tunnel
+<Hotspot X="-6048.007" Y="-2472.388" Z="312.1382" />
