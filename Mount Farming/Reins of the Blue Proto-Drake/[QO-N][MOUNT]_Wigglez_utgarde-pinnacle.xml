@@ -184,6 +184,7 @@
 									ObjectType="GameObject" 
 									Range="20"
 									NumOfTimes="3"
+									IgnoreCombat="true"
 									X="481.0895" Y="-512.5789" Z="104.7232" />
 				</If> <!-- Don't have Harpoon -->
 				
@@ -218,6 +219,7 @@
 										MobId2="192176" 
 										MobId3="192177" 
 										Range="4.75" 
+										IgnoreCombat="true"
 										X="486.0311" Y="-516.0083" Z="104.7234" />
 					</If> <!-- Grauf is in range -->
 				</If> <!-- Have Harpoon -->
