@@ -244,33 +244,15 @@
 				<RunTo X="4038.797" Y="-3487.308" Z="121.7373" />
 				
 				<!-- Start annihilating abominations -->
-				<RunTo X="4037.211" Y="-3446.099" Z="120.028" />
-				<RunTo X="4051.017" Y="-3433.231" Z="118.5492" />
-				<RunTo X="4052.256" Y="-3414.72" Z="116.1263" />
-				<RunTo X="4075.629" Y="-3398.181" Z="115.6531" />
-				<RunTo X="4081.92" Y="-3426.272" Z="116.7141" />
-				<RunTo X="4022.909" Y="-3424.358" Z="117.5385" />
-				<RunTo X="4011.753" Y="-3406.147" Z="116.4352" />
-				<RunTo X="3996.102" Y="-3421.551" Z="119.998" />
-				<RunTo X="4010.246" Y="-3435.76" Z="120.7647" />
-				
-				<!-- May miss an abom or two sometimes, we'll cover that with a targetmoveto -->
-				
-				<!-- Bile Spewer -->
-				<CustomBehavior File="TargetAndMoveToMob" 
-								MobId="10416" 
-								MoveWithinMaxRangeOfMob="1" 
-								WaitForNpcs="false"
-								TargetOnlyIfHealthPercentAbove="5" 
-								X="4051.49" Y="-3431.208" Z="118.2299" />
-				
-				<!-- Venom Belcher -->
-				<CustomBehavior File="TargetAndMoveToMob" 
-								MobId="10417" 
-								MoveWithinMaxRangeOfMob="1" 
-								WaitForNpcs="false"
-								TargetOnlyIfHealthPercentAbove="5" 
-								X="4051.49" Y="-3431.208" Z="118.2299" />
+				<CustomBehavior File="InteractWith"  
+								MobId1="10416" 
+								MobId2="10417" 
+								ObjectType="Npc" 
+								NumOfTimes="9" 
+								CollectionDistance="300"
+								MobState="Alive"
+								WaitForNpcs="False"
+								X="4012.281" Y="-3432.146" Z="119.8165" />
 				
 				<!-- Forces kill of Ramstein the Gorger -->
 				<CustomBehavior File="GetOutOfGroundEffectAndAuras" 
