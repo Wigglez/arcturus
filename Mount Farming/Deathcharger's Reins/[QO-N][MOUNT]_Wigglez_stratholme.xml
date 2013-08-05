@@ -252,7 +252,7 @@
 								CollectionDistance="300"
 								MobState="Alive"
 								WaitForNpcs="False"
-								X="4012.281" Y="-3432.146" Z="119.8165" />
+								X="4032.896" Y="-3409.701" Z="115.6923" />
 				
 				<!-- Forces kill of Ramstein the Gorger -->
 				<CustomBehavior File="GetOutOfGroundEffectAndAuras" 
