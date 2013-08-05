@@ -1,0 +1,223 @@
+﻿<HBProfile creator="Wigglez" version="1.0">
+	<Name>[QO-N][MOUNT]_Wigglez_ahn'qiraj</Name>
+   
+	<MinLevel>80</MinLevel>
+	<MaxLevel>101</MaxLevel>
+   
+	<MinDurability>-1</MinDurability>
+	<MinFreeBagSlots>-1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>False</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>	
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+	</AvoidMobs>
+	
+	<Blackspots>
+	</Blackspots>
+
+	<Mailboxes>
+	</Mailboxes>
+ 
+	<Vendors>
+	</Vendors>
+	
+	<ProtectedItems>
+		<Item Name="Red Qiraji Resonating Crystal" Entry="21321" />	
+	</ProtectedItems>
+
+	<Factions>
+	</Factions>
+	
+	<QuestOrder>
+		<ClearVendor />
+		<ClearMailbox />
+
+		<CustomBehavior File="UserSettings"
+						AdvancedSettingsMode="True"
+						FindMountAutomatically="True"
+						FindVendorsAutomatically="False"
+						GroundMountFarmingMode="False"
+						HarvestHerbs="False"
+						HarvestMinerals="False"
+						KillBetweenHotspots="True"
+						LogoutForInactivity="False"
+						LogoutInactivityUseForceQuit="False"
+						LootChests="False"
+						LootMobs="False"
+						LootRadius="1"
+						MountDistance="75"
+						MountName=""
+						NinjaSkin="False"
+						ProfileDebuggingMode="False"
+						PullDistance="25"
+						RessAtSpiritHealers="False"
+						SkinMobs="False"
+						UseFlightPaths="True"
+						UseMount="True" 
+						UseRandomMount="False" />
+							
+		<!-- Infinite loop -->
+		<While Condition="true" >
+			<!-- If we are inside Ahn'Qiraj -->
+			<If Condition="Me.MapId == 531">
+				<CustomBehavior File="Message" 
+								Text="Ahn'Qiraj detected. Running out."
+								LogColor="Cyan" />
+								
+				<RunTo X="-8221.35" Y="2014.34" Z="129.071" />
+				
+				<!-- Go through the portal -->
+				<CustomBehavior File="Misc\InInstance" X="-8227.909" Y="2006.204" Z="129.7998" />
+				
+				<!-- Make sure we run to the right spot outside the portal -->
+				<RunTo X="-8239.01" Y="1993.25" Z="129.071" />
+			</If> <!-- Ahn'Qiraj -->
+		
+			<!-- If we are not in the box, load the movement profile -->
+			<If Condition="Me.X &lt; -8289 || Me.X &gt; -8189 || Me.Y &lt; 1943 || Me.Y &gt; 2043" >
+				<CustomBehavior File="Message" 
+								Text="Distance from portal is not within our proximity, initializing movement to get there."
+								LogColor="Cyan" />	
+								
+				<CustomBehavior File="LoadProfile" 
+								ProfileName="Movement\[QO-N-M][MOUNT]_Wigglez_ahn'qiraj" />
+			</If> <!-- Not in box -->
+			
+			<!-- If we are in the box -->
+			<If Condition="Me.X &gt; -8289 &amp;&amp; Me.X &lt; -8189 &amp;&amp; Me.Y &gt; 1943 &amp;&amp; Me.Y &lt; 2043" >
+				<!-- Do repair check and bag check -->
+				<If Condition="(Me.LowestDurabilityPercent &lt; 0.3) || (Me.FreeBagSlots &lt; 25)" >
+					<CustomBehavior File="Message" 
+									Text="Vendoring or repairing is necessary. Switching to movement." 
+									LogColor="Cyan" />
+									
+					<CustomBehavior File="LoadProfile" 
+									ProfileName="Movement\[QO-N-M][MOUNT]_Wigglez_the-ahn'qiraj" />
+				</If> <!-- Repair/sell -->
+				
+				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+			
+				<CustomBehavior File="Message" 
+								Text="Portal detected nearby."
+								LogColor="Cyan" />	
+					
+				<!-- If we didn't enter the instance, wait 20 seconds then attempt to enter again -->
+				<While Condition="Me.MapId != 531">
+					<!-- Make sure we run to the right spot outside the portal -->
+					<RunTo X="-8239.01" Y="1993.25" Z="129.071" />
+
+					<!-- Run back in the portal -->
+					<CustomBehavior File="Misc\InInstance" X="-8225.789" Y="1995.401" Z="129.9354" />
+									
+					<CustomBehavior File="Message" 
+									Text="Waiting for the dungeon to load." 
+									LogColor="Cyan" />
+								
+					<CustomBehavior File="WaitTimer" 
+									WaitTime="20000"
+									VariantTime="20000" />
+									
+					<!-- If we still aren't in, we're locked out -->
+					<If Condition="Me.MapId != 531">
+						<CustomBehavior File="Message" 
+										Text="We are locked out. Waiting and trying again." 
+										LogColor="Cyan" />
+					</If> <!-- Locked -->
+				</While> <!-- While we aren't in the instance -->
+			</If> <!-- In box -->
+			
+			<!-- If we are inside and have checked our reset -->
+			<If Condition="Me.MapId == 531">
+				<!-- Entrance -->
+				<RunTo X="-8221.35" Y="2014.34" Z="129.071" />
+				
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
+				
+				<CustomBehavior File="Message" 
+								Text="Ahn'Qiraj initialized."  
+								LogColor="Cyan" />
+				
+				<!-- Kite everything -->
+				<CustomBehavior File="RunLikeHell" 
+								UseCTM="false" 
+								NumOfTimes="1" 
+								AllowCombat="false">
+					<!-- First four Anubisath Sentinels -->
+					<Hotspot X="-8156.46" Y="2119.579" Z="129.1199" />		
+					<Hotspot X="-8159.368" Y="2144.159" Z="129.4807" />
+					<Hotspot X="-8171.966" Y="2046.596" Z="133.7248" />
+					<Hotspot X="-8206.177" Y="2164.815" Z="129.3837" />
+					
+					<!-- Last four Anubisath Sentinels -->
+					<Hotspot X="-8321.975" Y="2142.675" Z="118.1827" />
+					<Hotspot X="-8314.339" Y="2119.221" Z="118.1797" />
+					<Hotspot X="-8297.351" Y="2075.668" Z="118.1873" />
+					<Hotspot X="-8288.92" Y="2054.495" Z="118.2175" />
+					
+					<!-- Pull everything to the middle -->
+					<Hotspot X="-8280.759" Y="2110.787" Z="118.1755" />
+				</CustomBehavior>
+				<RunTo X="-8280.759" Y="2110.787" Z="118.1755" />
+				
+				<!-- Interact with Anubisath Sentinel pile -->
+				<CustomBehavior File="InteractWith" 
+								InteractByLooting="true" 
+								MobId="15264" 
+								NumOfTimes="1" />
+								
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />  
+				
+				<!-- Target and move to the Obsidian Eradicator we could have missed -->
+				<CustomBehavior File="TargetAndMoveToMob" 
+								MobId="15262" 
+								MoveWithinMaxRangeOfMob="1" 
+								WaitForNpcs="false"
+								TargetOnlyIfHealthPercentAbove="5" 
+								X="-8246.38" Y="2126.184" Z="125.5539" />
+								
+				<!-- Loot from the remaining Obsidian Eradicator -->
+				<CustomBehavior File="InteractWith" 
+								InteractByLooting="true" 
+								MobId="15262" 
+								NumOfTimes="1" />				
+				
+				<!-- Go back to entrance -->
+				<RunTo X="-8221.35" Y="2014.34" Z="129.071" />
+				
+				<!-- Go through the portal -->
+				<CustomBehavior File="Misc\InInstance" X="-8227.909" Y="2006.204" Z="129.7998" />
+				
+				<!-- Make sure we run to the right spot outside the portal -->
+				<RunTo X="-8239.01" Y="1993.25" Z="129.071" />
+			</If> <!-- Ahn'Qiraj -->
+			
+			<!-- If we are in the box -->
+			<If Condition="Me.X &gt; -8289 &amp;&amp; Me.X &lt; -8189 &amp;&amp; Me.Y &gt; 1943 &amp;&amp; Me.Y &lt; 2043" >
+				<CustomBehavior File="Message" 
+								Text="Resetting instance." 
+								LogColor="Cyan" />
+				
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+				
+				<CustomBehavior File="Message" 
+								Text="Instance reset." 
+								LogColor="Cyan" />
+			</If> <!-- In box -->
+		</While> <!-- Infinite loop -->
+	</QuestOrder>
+</HBProfile>
+
