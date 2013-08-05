@@ -1,0 +1,107 @@
+﻿<HBProfile creator="Wigglez" version="1.0">
+	<Name>[QO-N-M][MOUNT]_Wigglez_utgarde-pinnacle</Name>
+   
+	<MinLevel>90</MinLevel>
+	<MaxLevel>101</MaxLevel>
+   
+	<MinDurability>-1</MinDurability>
+	<MinFreeBagSlots>-1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>False</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>	
+	</AvoidMobs>
+	
+	<Blackspots>
+	</Blackspots>
+
+	<Mailboxes>
+	</Mailboxes>
+ 
+	<Vendors>
+	</Vendors>
+	
+	<ProtectedItems>
+	</ProtectedItems>
+
+	<Factions>
+	</Factions>
+	
+	<QuestOrder>
+		<ClearVendor />
+		<ClearMailbox />
+
+		<CustomBehavior File="UserSettings"
+						AdvancedSettingsMode="True"
+						FindMountAutomatically="True"
+						FindVendorsAutomatically="False"
+						GroundMountFarmingMode="False"
+						HarvestHerbs="False"
+						HarvestMinerals="False"
+						KillBetweenHotspots="True"
+						LogoutForInactivity="False"
+						LogoutInactivityUseForceQuit="False"
+						LootChests="False"
+						LootMobs="False"
+						LootRadius="1"
+						MountDistance="75"
+						MountName=""
+						NinjaSkin="False"
+						ProfileDebuggingMode="False"
+						PullDistance="45"
+						RessAtSpiritHealers="False"
+						SkinMobs="False"
+						UseFlightPaths="True"
+						UseMount="True" 
+						UseRandomMount="False" />
+		
+		<!-- If we are not in Northrend -->
+		<If Condition="Me.MapId != 571" >
+			<CustomBehavior File="Message" 
+							Text="We are not in Northrend." 
+							LogColor="Red" />
+					
+			<CustomBehavior File="UserSettings" 
+							StopBot="true" />
+		</If> <!-- Not Northrend -->
+		
+		<!-- If we are in Northrend -->
+		<If Condition="Me.MapId == 571">
+			<CustomBehavior File="Message" 
+							Text="We are in Northrend." 
+							LogColor="Cyan" />
+							
+			<CustomBehavior File="Message" 
+							Text="Flying to Utgarde Pinnacle." 
+							LogColor="Lime" />
+			
+			<CustomBehavior File="FlyTo" X="1282.375" Y="-4843.026" Z="262.8326" />
+
+			<!-- Fly down -->
+			<CustomBehavior File="FlyTo" X="1242.55" Y="-4857.47" Z="217.783" />
+			<CustomBehavior File="ForcedDismount" />
+			
+			<!-- Run into the box -->
+			<RunTo X="1242.55" Y="-4857.47" Z="217.783" />
+			
+			<!-- In box -->
+			<If Condition="Me.X &gt; 1192 &amp;&amp; Me.X &lt; 1292 &amp;&amp; Me.Y &gt; -4907 &amp;&amp; Me.Y &lt; -4807" >
+				<CustomBehavior File="LoadProfile" 
+								ProfileName="..\[QO-N][MOUNT]_Wigglez_utgarde-pinnacle" />
+			</If> <!-- In box -->	
+		</If> <!-- Northrend -->
+	</QuestOrder>
+</HBProfile>
+

@@ -4,7 +4,7 @@
 </If>
  
  <!--    Developer Tools -> Console    -->
- Logging.Write("AreaID: {0}", StyxWoW.Me.HearthstoneAreaId);
+Logging.Write("AreaID: {0}", StyxWoW.Me.HearthstoneAreaId);
 
  <!-- format -->
  AreaID:  -  - 

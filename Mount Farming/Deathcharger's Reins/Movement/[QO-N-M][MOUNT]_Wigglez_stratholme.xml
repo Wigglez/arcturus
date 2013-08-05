@@ -1,0 +1,240 @@
+﻿<HBProfile creator="Wigglez" version="1.0">
+	<Name>[QO-N-M][MOUNT]_Wigglez_stratholme</Name>
+   
+	<MinLevel>80</MinLevel>
+	<MaxLevel>101</MaxLevel>
+   
+	<MinDurability>-1</MinDurability>
+	<MinFreeBagSlots>-1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>False</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>	
+	</AvoidMobs>
+	
+	<Blackspots>
+	</Blackspots>
+
+	<Mailboxes>
+	</Mailboxes>
+ 
+	<Vendors>
+	</Vendors>
+	
+	<ProtectedItems>
+	</ProtectedItems>
+
+	<Factions>
+	</Factions>
+	
+	<QuestOrder>
+		<ClearVendor />
+		<ClearMailbox />
+
+		<CustomBehavior File="UserSettings"
+						AdvancedSettingsMode="True"
+						FindMountAutomatically="True"
+						FindVendorsAutomatically="False"
+						GroundMountFarmingMode="False"
+						HarvestHerbs="False"
+						HarvestMinerals="False"
+						KillBetweenHotspots="True"
+						LogoutForInactivity="False"
+						LogoutInactivityUseForceQuit="False"
+						LootChests="False"
+						LootMobs="False"
+						LootRadius="1"
+						MountDistance="75"
+						MountName=""
+						NinjaSkin="False"
+						ProfileDebuggingMode="False"
+						PullDistance="45"
+						RessAtSpiritHealers="False"
+						SkinMobs="False"
+						UseFlightPaths="True"
+						UseMount="True" 
+						UseRandomMount="False" />
+		
+		<!-- If we are not in Eastern Kingdoms -->
+		<If Condition="Me.MapId != 0" >
+			<CustomBehavior File="Message" 
+							Text="We are not in Eastern Kingdoms." 
+							LogColor="Red" />
+					
+			<CustomBehavior File="Message" 
+							Text="You are on the wrong continent." 
+							LogColor="Red" />		
+							
+			<CustomBehavior File="UserSettings" 
+							StopBot="true" />
+		</If> <!-- Not Eastern Kingdoms -->
+		
+		<!-- If we are in Eastern Kingdoms -->
+		<If Condition="Me.MapId == 0">
+			<CustomBehavior File="Message" 
+							Text="We are in Eastern Kingdoms." 
+							LogColor="Cyan" />
+							
+			<If Condition="Me.HearthstoneAreaId == 2268" >
+				<CustomBehavior File="Message" 
+								Text="Our Innkeeper is set at Light's Hope Chapel." 
+								LogColor="Cyan" />
+								
+				<!-- Have hearthstone -->
+				<If Condition="HasItem(6948)">
+					<CustomBehavior File="Message" 
+									Text="Using Hearthstone." 
+									LogColor="Lime" />
+									
+					<CustomBehavior File="Misc\RunLua" 
+									Lua="UseItemByName(6948)" 
+									WaitTime="1000" />
+									
+					<CustomBehavior File="WaitTimer" 
+									WaitTime="15000" />				
+				</If> <!-- Have hearthstone -->
+			
+				<!-- Have Innkeeper's Daughter -->
+				<If Condition="HasItem(64488)">
+					<CustomBehavior File="Message" 
+									Text="Using Innkeeper's Daughter." 
+									LogColor="Lime" />
+										
+					<CustomBehavior File="Misc\RunLua" 
+									Lua="UseItemByName(64488)" 
+									WaitTime="1000" />
+						
+					<CustomBehavior File="WaitTimer" 
+									WaitTime="15000" />
+				</If> <!-- Have Innkeeper's Daughter -->
+				
+				<!-- Our hearth isn't set, we need to go to the zone -->
+				<Else>
+					<CustomBehavior File="Message" 
+									Text="Our Hearthstone isn't set in the proper location. Moving to set it." 
+									LogColor="Lime" />
+				
+					<CustomBehavior File="Message" 
+									Text="Flying to Light's Hope Chapel." 
+									LogColor="Lime" />
+				
+					<!-- Fly to the hover point above the innkeep -->
+					<CustomBehavior File="FlyTo" X="2275.69" Y="-5306.59" Z="119.8641" />
+
+					<!-- Front doorway of the inn -->
+					<CustomBehavior File="FlyTo" X="2282.779" Y="-5321.938" Z="89.09611" />
+					<CustomBehavior File="ForcedDismount" />
+
+					<!-- Run inside the inn -->
+					<RunTo X="2294.61" Y="-5334.82" Z="90.75365" />
+					
+					<!-- Set hearthstone -->
+					<CustomBehavior File="Message" 
+									Text="Setting my Hearthstone." 
+									LogColor="Lime" />
+									
+					<CustomBehavior File="SetHearthstone" 
+									MobId="16256" 
+									X="2295.74" Y="-5336.82" Z="90.75244" />
+									
+					<!-- Run outside of inn -->
+					<RunTo X="2282.779" Y="-5321.938" Z="89.09611" />
+					
+					<!-- Hover point -->
+					<CustomBehavior File="FlyTo" X="2275.69" Y="-5306.59" Z="119.8641" />
+					
+					<CustomBehavior File="Message" 
+									Text="We are in Light's Hope Chapel." 
+									LogColor="Fuchsia" />
+				</Else> <!-- Set hearth -->
+			</If> <!-- Hearth check -->
+			
+			<!-- Repair/sell if necessary -->
+			<If Condition="(Me.LowestDurabilityPercent &lt; 0.95) || (Me.FreeBagSlots &lt; 25)" >	
+				<CustomBehavior File="Message" 
+								Text="Vendoring or repairing is necessary." 
+								LogColor="Fuchsia" />
+				
+				<CustomBehavior File="FlyTo" X="2261.397" Y="-5293.948" Z="82.35433" />
+				<CustomBehavior File="ForcedDismount" />
+				
+				<CustomBehavior File="ForceSetVendor" 
+								DoMail="True" 
+								DoRepair="True" 
+								DoSell="True" 
+								DoTrain="False" />
+				
+				<SetVendor>
+					<Vendors>
+						<!-- Light's Hope Chapel -->
+						<Vendor Name="Vincent Randolph" 
+								Entry="47286" 
+								Type="Repair" 
+								X="2257.292" Y="-5293.229" Z="82.14355" />
+					</Vendors>
+				</SetVendor>
+				
+				<!-- We are done repairing -->
+				<If Condition="Me.DurabilityPercent &gt;= 0.95" >
+					<CustomBehavior File="Message" 
+									Text="Repairing and sales complete." 
+									LogColor="Fuchsia" />
+				</If> <!-- repaired -->
+				
+				<CustomBehavior File="Message" 
+								Text="Mailing if necessary." 
+								LogColor="Fuchsia" />
+				
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox X="2289.896" Y="-5322.127" Z="89.97857" />
+					</Mailboxes>
+				</SetMailbox>
+			
+				<!-- Fly to the hover point above the innkeep -->
+				<CustomBehavior File="FlyTo" X="2275.69" Y="-5306.59" Z="119.8641" />
+			</If> <!-- Repairing -->
+			
+			<CustomBehavior File="Message" 
+							Text="Flying to the Stratholme backdoor entrance." 
+							LogColor="Lime" />
+			
+			<!-- Fly outside of Stratholme at the backdoor -->
+			<CustomBehavior File="FlyTo" X="3119.094" Y="-4052.541" Z="149.7991" />
+
+			<!-- Fly down -->
+			<CustomBehavior File="FlyTo" X="3175.749" Y="-4039.758" Z="105.4857" />
+			<CustomBehavior File="ForcedDismount" />
+			
+			<!-- Open the Elder's Square Service Entrance gate -->
+			<CustomBehavior File="InteractWith" 
+							MobId="175369"
+							ObjectType="Gameobject"
+							Range="4.75" 
+							NumOfTimes="1"
+							X="3185.4812" Y="-4039.09937" Z="107.791389" />
+					
+			<!-- Run into the box -->
+			<RunTo X="3233.06" Y="-4048.3" Z="108.4415" />
+					
+			<!-- In box -->
+			<If Condition="Me.X &gt; 3200 &amp;&amp; Me.X &lt; 3300 &amp;&amp; Me.Y &gt; -4100 &amp;&amp; Me.Y &lt; -4000" >
+				<CustomBehavior File="LoadProfile" 
+								ProfileName="..\[QO-N][MOUNT]_Wigglez_stratholme" />
+			</If> <!-- In box -->				
+		</If> <!-- Eastern Kingdoms -->
+	</QuestOrder>
+</HBProfile>
+

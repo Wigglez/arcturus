@@ -1,0 +1,225 @@
+﻿<HBProfile creator="Wigglez" version="1.0">
+	<Name>[QO-N-M][MOUNT]_Wigglez_the-stonecore</Name>
+   
+	<MinLevel>90</MinLevel>
+	<MaxLevel>101</MaxLevel>
+   
+	<MinDurability>-1</MinDurability>
+	<MinFreeBagSlots>-1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>False</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>	
+	</AvoidMobs>
+	
+	<Blackspots>
+	</Blackspots>
+
+	<Mailboxes>
+	</Mailboxes>
+ 
+	<Vendors>
+	</Vendors>
+	
+	<ProtectedItems>
+	</ProtectedItems>
+
+	<Factions>
+	</Factions>
+	
+	<QuestOrder>
+		<ClearVendor />
+		<ClearMailbox />
+
+		<CustomBehavior File="UserSettings"
+						AdvancedSettingsMode="True"
+						FindMountAutomatically="True"
+						FindVendorsAutomatically="False"
+						GroundMountFarmingMode="False"
+						HarvestHerbs="False"
+						HarvestMinerals="False"
+						KillBetweenHotspots="True"
+						LogoutForInactivity="False"
+						LogoutInactivityUseForceQuit="False"
+						LootChests="False"
+						LootMobs="False"
+						LootRadius="1"
+						MountDistance="75"
+						MountName=""
+						NinjaSkin="False"
+						ProfileDebuggingMode="False"
+						PullDistance="45"
+						RessAtSpiritHealers="False"
+						SkinMobs="False"
+						UseFlightPaths="True"
+						UseMount="True" 
+						UseRandomMount="False" />
+		
+		
+		<!-- If we are in Deepholm -->
+		<If Condition="Me.MapId == 646">
+			<If Condition="Me.HearthstoneAreaId == 5303" >
+				<CustomBehavior File="Message" 
+								Text="Our Innkeeper is set at Temple of Earth." 
+								LogColor="Cyan" />
+								
+				<!-- Have hearthstone -->
+				<If Condition="HasItem(6948)">
+					<CustomBehavior File="Message" 
+									Text="Using Hearthstone." 
+									LogColor="Lime" />
+									
+					<CustomBehavior File="Misc\RunLua" 
+									Lua="UseItemByName(6948)" 
+									WaitTime="1000" />
+									
+					<CustomBehavior File="WaitTimer" 
+									WaitTime="15000" />				
+				</If> <!-- Have hearthstone -->
+			
+				<!-- Have Innkeeper's Daughter -->
+				<If Condition="HasItem(64488)">
+					<CustomBehavior File="Message" 
+									Text="Using Innkeeper's Daughter." 
+									LogColor="Lime" />
+										
+					<CustomBehavior File="Misc\RunLua" 
+									Lua="UseItemByName(64488)" 
+									WaitTime="1000" />
+						
+					<CustomBehavior File="WaitTimer" 
+									WaitTime="15000" />
+				</If> <!-- Have Innkeeper's Daughter -->
+				
+				<!-- Our hearth isn't set, we need to go to the zone -->
+				<Else>
+					<CustomBehavior File="Message" 
+									Text="Our Hearthstone isn't set in the proper location. Moving to set it." 
+									LogColor="Lime" />
+				
+					<CustomBehavior File="Message" 
+									Text="Flying to Temple of Earth." 
+									LogColor="Lime" />
+				
+					<!-- Outside temple -->
+					<CustomBehavior File="FlyTo" X="898.05" Y="500.645" Z="-22.99612" />
+				
+					<!-- Fly to the hover point above the innkeep -->
+					<CustomBehavior File="FlyTo" X="980.4913" Y="520.0079" Z="-27.08499" />
+
+					<!-- Front doorway of the inn -->
+					<CustomBehavior File="FlyTo" X="993.866" Y="520.6385" Z="-49.33351" />
+					<CustomBehavior File="ForcedDismount" />
+
+					<!-- Set hearthstone -->
+					<CustomBehavior File="Message" 
+									Text="Setting my Hearthstone." 
+									LogColor="Lime" />
+									
+					<CustomBehavior File="SetHearthstone" 
+									MobId="45300" 
+									X="1032.42" Y="542.142" Z="-49.32687" />
+									
+					<!-- Run outside of inn -->
+					<RunTo X="993.866" Y="520.6385" Z="-49.33351" />
+					
+					<!-- Hover point -->
+					<CustomBehavior File="FlyTo" X="980.4913" Y="520.0079" Z="-27.08499" />
+					
+					<CustomBehavior File="Message" 
+									Text="We are in Temple of Earth." 
+									LogColor="Fuchsia" />
+				</Else> <!-- Set hearth -->
+			</If> <!-- Hearth check -->
+			
+			<!-- Repair/sell if necessary -->
+			<If Condition="(Me.LowestDurabilityPercent &lt; 0.95) || (Me.FreeBagSlots &lt; 25)" >	
+				<CustomBehavior File="Message" 
+								Text="Vendoring or repairing is necessary." 
+								LogColor="Fuchsia" />
+				
+				<CustomBehavior File="FlyTo" X="1038.847" Y="493.975" Z="-39.45293" />
+				<CustomBehavior File="FlyTo" X="1076.887" Y="452.1484" Z="-40.15692" />
+				
+				<CustomBehavior File="FlyTo" X="1089.861" Y="438.45" Z="-45.79807" />
+				<CustomBehavior File="ForcedDismount" />
+				
+				<CustomBehavior File="ForceSetVendor" 
+								DoMail="True" 
+								DoRepair="True" 
+								DoSell="True" 
+								DoTrain="False" />
+				
+				<SetVendor>
+					<Vendors>
+						<!-- Temple of Earth -->
+						<Vendor Name="Rixi &quot;The Driller&quot; Bombdigger" 
+								Entry="45293" 
+								Type="Repair" 
+								X="1091.19" Y="436.332" Z="-45.96808" />
+					</Vendors>
+				</SetVendor>
+				
+				<!-- We are done repairing -->
+				<If Condition="Me.DurabilityPercent &gt;= 0.95" >
+					<CustomBehavior File="Message" 
+									Text="Repairing and sales complete." 
+									LogColor="Fuchsia" />
+				</If> <!-- repaired -->
+				
+				<CustomBehavior File="Message" 
+								Text="Mailing if necessary." 
+								LogColor="Fuchsia" />
+				
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox X="1088.652" Y="434.7165" Z="-45.85033" />
+					</Mailboxes>
+				</SetMailbox>
+			
+				<CustomBehavior File="FlyTo" X="1076.887" Y="452.1484" Z="-40.15692" />
+				<CustomBehavior File="FlyTo" X="1038.847" Y="493.975" Z="-39.45293" />
+				
+				<!-- Fly to the hover point above the innkeep -->
+				<CustomBehavior File="FlyTo" X="980.4913" Y="520.0079" Z="-27.08499" />
+				
+				<!-- Outside temple -->
+				<CustomBehavior File="FlyTo" X="898.05" Y="500.645" Z="-22.99612" />
+				
+				<!-- Further outside -->
+				<CustomBehavior File="FlyTo" X="798.0813" Y="491.4862" Z="19.83816" />
+			</If> <!-- Repairing -->
+			
+			<CustomBehavior File="Message" 
+							Text="Flying to The Stonecore." 
+							LogColor="Lime" />
+			
+			<CustomBehavior File="FlyTo" X="1018.4" Y="674.9203" Z="183.8247" />
+
+			<!-- Fly down -->
+			<CustomBehavior File="FlyTo" X="1023.72" Y="644.747" Z="156.672" />
+			<CustomBehavior File="ForcedDismount" />
+			
+			<RunTo X="1023.72" Y="644.747" Z="156.672" />
+			
+			<!-- In box -->
+			<If Condition="Me.X &gt; 973 &amp;&amp; Me.X &lt; 1073 &amp;&amp; Me.Y &gt; 594 &amp;&amp; Me.Y &lt; 694" >
+				<CustomBehavior File="LoadProfile" 
+								ProfileName="..\[QO-N][MOUNT]_Wigglez_the-stonecore" />
+			</If> <!-- In box -->				
+		</If> <!-- Deepholm -->
+	</QuestOrder>
+</HBProfile>
+

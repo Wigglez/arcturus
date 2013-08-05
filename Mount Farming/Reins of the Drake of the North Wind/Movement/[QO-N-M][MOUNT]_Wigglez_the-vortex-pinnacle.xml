@@ -1,0 +1,254 @@
+﻿<HBProfile creator="Wigglez" version="1.0">
+	<Name>[QO-N-M][MOUNT]_Wigglez_the-vortex-pinnacle</Name>
+   
+	<MinLevel>90</MinLevel>
+	<MaxLevel>101</MaxLevel>
+   
+	<MinDurability>-1</MinDurability>
+	<MinFreeBagSlots>-1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>False</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>	
+	</AvoidMobs>
+	
+	<Blackspots>
+	</Blackspots>
+
+	<Mailboxes>
+	</Mailboxes>
+ 
+	<Vendors>
+	</Vendors>
+	
+	<ProtectedItems>
+	</ProtectedItems>
+
+	<Factions>
+	</Factions>
+	
+	<QuestOrder>
+		<ClearVendor />
+		<ClearMailbox />
+
+		<CustomBehavior File="UserSettings"
+						AdvancedSettingsMode="True"
+						FindMountAutomatically="True"
+						FindVendorsAutomatically="False"
+						GroundMountFarmingMode="False"
+						HarvestHerbs="False"
+						HarvestMinerals="False"
+						KillBetweenHotspots="True"
+						LogoutForInactivity="False"
+						LogoutInactivityUseForceQuit="False"
+						LootChests="False"
+						LootMobs="False"
+						LootRadius="1"
+						MountDistance="75"
+						MountName=""
+						NinjaSkin="False"
+						ProfileDebuggingMode="False"
+						PullDistance="45"
+						RessAtSpiritHealers="False"
+						SkinMobs="False"
+						UseFlightPaths="True"
+						UseMount="True" 
+						UseRandomMount="False" />
+		
+		
+		<!-- If we are in Eastern Kingdoms -->
+		<If Condition="Me.MapId == 0">
+			<CustomBehavior File="Message" 
+							Text="We are in Eastern Kingdoms." 
+							LogColor="Cyan" />
+							
+			<CustomBehavior File="Message" 
+							Text="Flying to Booty Bay." 
+							LogColor="Lime" />
+								
+			<CustomBehavior File="FlyTo" X="-14297.21" Y="521.5612" Z="76.41416" />
+							
+			<CustomBehavior File="FlyTo" X="-14285.01" Y="554.9122" Z="8.684637" />
+			<CustomBehavior File="ForcedDismount" />
+			
+			<CustomBehavior File="Message" 
+							Text="Waiting on the boat to Ratchet." 
+							LogColor="Cyan" />
+							
+			<!-- Booty Bay to Ratchet -->
+			<CustomBehavior File="UseTransport" 
+							TransportId="20808" 
+							WaitAtX="-14281.86" 
+							WaitAtY="564.9252" 
+							WaitAtZ="7.45587"
+							TransportStartX="-14277.74" 
+							TransportStartY="582.86" 
+							TransportStartZ="0.015"
+							StandOnX="-14271.49" 
+							StandOnY="581.3417" 
+							StandOnZ="6.019351"
+							TransportEndX="-1005.613" 
+							TransportEndY="-3841.648" 
+							TransportEndZ="0.03330701"	
+							GetOffX="-997.8598" 
+							GetOffY="-3824.981" 
+							GetOffZ="5.466243" />		
+							
+			<RunTo X="-984.0112" Y="-3801.92" Z="5.412419" />
+		</If> <!-- Eastern Kingdoms -->
+		
+		<!-- If we are in Kalimdor -->
+		<If Condition="Me.MapId == 1">
+			<If Condition="Me.HearthstoneAreaId == 5466" >
+				<CustomBehavior File="Message" 
+								Text="Our Innkeeper is set at Ramkahen." 
+								LogColor="Cyan" />
+								
+				<!-- Have hearthstone -->
+				<If Condition="HasItem(6948)">
+					<CustomBehavior File="Message" 
+									Text="Using Hearthstone." 
+									LogColor="Lime" />
+									
+					<CustomBehavior File="Misc\RunLua" 
+									Lua="UseItemByName(6948)" 
+									WaitTime="1000" />
+									
+					<CustomBehavior File="WaitTimer" 
+									WaitTime="15000" />				
+				</If> <!-- Have hearthstone -->
+			
+				<!-- Have Innkeeper's Daughter -->
+				<If Condition="HasItem(64488)">
+					<CustomBehavior File="Message" 
+									Text="Using Innkeeper's Daughter." 
+									LogColor="Lime" />
+										
+					<CustomBehavior File="Misc\RunLua" 
+									Lua="UseItemByName(64488)" 
+									WaitTime="1000" />
+						
+					<CustomBehavior File="WaitTimer" 
+									WaitTime="15000" />
+				</If> <!-- Have Innkeeper's Daughter -->
+				
+				<!-- Our hearth isn't set, we need to go to the zone -->
+				<Else>
+					<CustomBehavior File="Message" 
+									Text="Our Hearthstone isn't set in the proper location. Moving to set it." 
+									LogColor="Lime" />
+				
+					<CustomBehavior File="Message" 
+									Text="Flying to Ramkahen." 
+									LogColor="Lime" />
+				
+					<!-- Fly to the hover point above the innkeep -->
+					<CustomBehavior File="FlyTo" X="-9466.292" Y="-953.1846" Z="154.7597" />
+
+					<!-- Front doorway of the inn -->
+					<CustomBehavior File="FlyTo" X="-9430.339" Y="-959.6268" Z="111.0121" />
+					<CustomBehavior File="ForcedDismount" />
+
+					<!-- Run inside the inn -->
+					<RunTo X="-9389.056" Y="-947.2235" Z="113.7646" />
+					
+					<!-- Set hearthstone -->
+					<CustomBehavior File="Message" 
+									Text="Setting my Hearthstone." 
+									LogColor="Lime" />
+									
+					<CustomBehavior File="SetHearthstone" 
+									MobId="48886" 
+									X="-9389.101" Y="-944.342" Z="113.7649" />
+									
+					<!-- Run outside of inn -->
+					<RunTo X="-9430.339" Y="-959.6268" Z="111.0121" />
+					
+					<!-- Hover point -->
+					<CustomBehavior File="FlyTo" X="-9466.292" Y="-953.1846" Z="154.7597" />
+					
+					<CustomBehavior File="Message" 
+									Text="We are in Ramkahen." 
+									LogColor="Fuchsia" />
+				</Else> <!-- Set hearth -->
+			</If> <!-- Hearth check -->
+			
+			<!-- Repair/sell if necessary -->
+			<If Condition="(Me.LowestDurabilityPercent &lt; 0.95) || (Me.FreeBagSlots &lt; 25)" >	
+				<CustomBehavior File="Message" 
+								Text="Vendoring or repairing is necessary." 
+								LogColor="Fuchsia" />
+				
+				<CustomBehavior File="FlyTo" X="-9406.771" Y="-908.9407" Z="112.5402" />
+				<CustomBehavior File="ForcedDismount" />
+				
+				<CustomBehavior File="ForceSetVendor" 
+								DoMail="True" 
+								DoRepair="True" 
+								DoSell="True" 
+								DoTrain="False" />
+				
+				<SetVendor>
+					<Vendors>
+						<!-- Ramkahen -->
+						<Vendor Name="Blacksmith Abasi" 
+								Entry="48617" 
+								Type="Repair" 
+								X="-9404.68" Y="-906.438" Z="112.5413" />
+					</Vendors>
+				</SetVendor>
+				
+				<!-- We are done repairing -->
+				<If Condition="Me.DurabilityPercent &gt;= 0.95" >
+					<CustomBehavior File="Message" 
+									Text="Repairing and sales complete." 
+									LogColor="Fuchsia" />
+				</If> <!-- repaired -->
+				
+				<CustomBehavior File="Message" 
+								Text="Mailing if necessary." 
+								LogColor="Fuchsia" />
+				
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox X="-9428.678" Y="-967.0657" Z="111.0119" />
+					</Mailboxes>
+				</SetMailbox>
+			
+				<!-- Fly to the hover point above the innkeep -->
+				<CustomBehavior File="FlyTo" X="-9466.292" Y="-953.1846" Z="154.7597" />
+			</If> <!-- Repairing -->
+			
+			<CustomBehavior File="Message" 
+							Text="Flying to The Vortex Pinnacle." 
+							LogColor="Lime" />
+			
+			<CustomBehavior File="FlyTo" X="-11487.13" Y="-2285.286" Z="626.9804" />
+
+			<!-- Fly down -->
+			<CustomBehavior File="FlyTo" X="-11513.3" Y="-2309.88" Z="608.393" />
+			<CustomBehavior File="ForcedDismount" />
+			
+			<RunTo X="-11513.3" Y="-2309.88" Z="608.393" />
+			
+			<!-- In box -->
+			<If Condition="Me.X &gt; -11563 &amp;&amp; Me.X &lt; -11463 &amp;&amp; Me.Y &gt; -2359 &amp;&amp; Me.Y &lt; -2259" >
+				<CustomBehavior File="LoadProfile" 
+								ProfileName="..\[QO-N][MOUNT]_Wigglez_the-vortex-pinnacle" />
+			</If> <!-- In box -->				
+		</If> <!-- Kalimdor -->
+	</QuestOrder>
+</HBProfile>
+
