@@ -218,6 +218,9 @@
 			<CustomBehavior File="FlyTo" X="3175.749" Y="-4039.758" Z="105.4857" />
 			<CustomBehavior File="ForcedDismount" />
 			
+			<!-- Stand next to gate -->
+			<RunTo X="3183.387" Y="-4039.228" Z="107.8591" />
+			
 			<!-- Open the Elder's Square Service Entrance gate -->
 			<CustomBehavior File="InteractWith" 
 							MobId="175369"
@@ -225,6 +228,9 @@
 							Range="4.75" 
 							NumOfTimes="1"
 							X="3185.4812" Y="-4039.09937" Z="107.791389" />
+					
+			<!-- Run through gate -->
+			<CustomBehavior File="MyCTM" X="3197.964" Y="-4039.016" Z="107.9909" />
 					
 			<!-- Run into the box -->
 			<RunTo X="3233.06" Y="-4048.3" Z="108.4415" />
