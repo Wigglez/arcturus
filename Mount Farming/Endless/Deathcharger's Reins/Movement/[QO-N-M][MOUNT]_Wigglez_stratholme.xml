@@ -87,86 +87,39 @@
 							Text="We are in Eastern Kingdoms." 
 							LogColor="Cyan" />
 							
-			<If Condition="Me.HearthstoneAreaId == 2268" >
-				<CustomBehavior File="Message" 
-								Text="Our Innkeeper is set at Light's Hope Chapel." 
-								LogColor="Cyan" />
-								
-				<!-- Have hearthstone -->
-				<If Condition="HasItem(6948)">
-					<CustomBehavior File="Message" 
-									Text="Using Hearthstone." 
-									LogColor="Lime" />
-									
-					<CustomBehavior File="Misc\RunLua" 
-									Lua="UseItemByName(6948)" 
-									WaitTime="1000" />
-									
-					<CustomBehavior File="WaitTimer" 
-									WaitTime="15000" />				
-				</If> <!-- Have hearthstone -->
-			
-				<!-- Have Innkeeper's Daughter -->
-				<If Condition="HasItem(64488)">
-					<CustomBehavior File="Message" 
-									Text="Using Innkeeper's Daughter." 
-									LogColor="Lime" />
-										
-					<CustomBehavior File="Misc\RunLua" 
-									Lua="UseItemByName(64488)" 
-									WaitTime="1000" />
-						
-					<CustomBehavior File="WaitTimer" 
-									WaitTime="15000" />
-				</If> <!-- Have Innkeeper's Daughter -->
-				
-				<!-- Our hearth isn't set, we need to go to the zone -->
-				<Else>
-					<CustomBehavior File="Message" 
-									Text="Our Hearthstone isn't set in the proper location. Moving to set it." 
-									LogColor="Lime" />
-				
-					<CustomBehavior File="Message" 
-									Text="Flying to Light's Hope Chapel." 
-									LogColor="Lime" />
-				
-					<!-- Fly to the hover point above the innkeep -->
-					<CustomBehavior File="FlyTo" X="2275.69" Y="-5306.59" Z="119.8641" />
-
-					<!-- Front doorway of the inn -->
-					<CustomBehavior File="FlyTo" X="2282.779" Y="-5321.938" Z="89.09611" />
-					<CustomBehavior File="ForcedDismount" />
-
-					<!-- Run inside the inn -->
-					<RunTo X="2294.61" Y="-5334.82" Z="90.75365" />
-					
-					<!-- Set hearthstone -->
-					<CustomBehavior File="Message" 
-									Text="Setting my Hearthstone." 
-									LogColor="Lime" />
-									
-					<CustomBehavior File="SetHearthstone" 
-									MobId="16256" 
-									X="2295.74" Y="-5336.82" Z="90.75244" />
-									
-					<!-- Run outside of inn -->
-					<RunTo X="2282.779" Y="-5321.938" Z="89.09611" />
-					
-					<!-- Hover point -->
-					<CustomBehavior File="FlyTo" X="2275.69" Y="-5306.59" Z="119.8641" />
-					
-					<CustomBehavior File="Message" 
-									Text="We are in Light's Hope Chapel." 
-									LogColor="Fuchsia" />
-				</Else> <!-- Set hearth -->
-			</If> <!-- Hearth check -->
-			
-			<!-- Repair/sell if necessary -->
-			<If Condition="(Me.LowestDurabilityPercent &lt; 0.95) || (Me.FreeBagSlots &lt; 25)" >	
+			<!-- If I need to repair or sell -->
+			<If Condition="(Me.LowestDurabilityPercent &lt; 0.95) || (Me.FreeBagSlots &lt; 25)" >
 				<CustomBehavior File="Message" 
 								Text="Vendoring or repairing is necessary." 
 								LogColor="Fuchsia" />
 				
+				<!-- If I'm just leaving Stratholme -->
+				<If Condition="Me.X &gt; 3200 &amp;&amp; Me.X &lt; 3300 &amp;&amp; Me.Y &gt; -4100 &amp;&amp; Me.Y &lt; -4000" >
+					<RunTo X="3187.557" Y="-4039.175" Z="107.9909" />	
+
+					<!-- Open the Elder's Square Service Entrance gate -->
+					<CustomBehavior File="InteractWith" 
+									MobId="175369"
+									ObjectType="Gameobject"
+									Range="4.75" 
+									NumOfTimes="1"
+									X="3185.4812" Y="-4039.09937" Z="107.791389" />
+									
+					<CustomBehavior File="MyCTM" X="3176.104" Y="-4039.066" Z="105.4812" />
+				</If> <!-- Leave Stratholme -->
+						
+				<CustomBehavior File="Message" 
+								Text="Flying to Light's Hope Chapel." 
+								LogColor="Lime" />
+		
+				<!-- Fly to the hover point above the innkeep -->
+				<CustomBehavior File="FlyTo" X="2275.69" Y="-5306.59" Z="119.8641" />
+
+				<CustomBehavior File="Message" 
+								Text="We are in Light's Hope Chapel." 
+								LogColor="Fuchsia" />
+						
+						
 				<CustomBehavior File="FlyTo" X="2261.397" Y="-5293.948" Z="82.35433" />
 				<CustomBehavior File="ForcedDismount" />
 				
@@ -205,7 +158,7 @@
 			
 				<!-- Fly to the hover point above the innkeep -->
 				<CustomBehavior File="FlyTo" X="2275.69" Y="-5306.59" Z="119.8641" />
-			</If> <!-- Repairing -->
+			</If> <!-- Repair/sell -->
 			
 			<CustomBehavior File="Message" 
 							Text="Flying to the Stratholme backdoor entrance." 
