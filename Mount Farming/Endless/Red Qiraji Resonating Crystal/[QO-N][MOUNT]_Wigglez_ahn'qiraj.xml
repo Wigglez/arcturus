@@ -178,21 +178,12 @@
 								MobId="15264" 
 								NumOfTimes="1" />
 								
-				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />  
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />  	
 				
-				<!-- Target and move to the Obsidian Eradicator we could have missed -->
-				<CustomBehavior File="TargetAndMoveToMob" 
-								MobId="15262" 
-								MoveWithinMaxRangeOfMob="1" 
-								WaitForNpcs="false"
-								TargetOnlyIfHealthPercentAbove="5" 
-								X="-8246.38" Y="2126.184" Z="125.5539" />
-								
-				<!-- Loot from the remaining Obsidian Eradicator -->
-				<CustomBehavior File="InteractWith" 
-								InteractByLooting="true" 
-								MobId="15262" 
-								NumOfTimes="1" />				
+				<!-- We are done, go reset -->
+				<CustomBehavior File="Message" 
+								Text="Ahn'Qiraj detected. Running out to reset."
+								LogColor="Cyan" />
 				
 				<!-- Go back to entrance -->
 				<RunTo X="-8221.35" Y="2014.34" Z="129.071" />

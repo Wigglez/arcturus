@@ -111,84 +111,27 @@
 		
 		<!-- If we are in Kalimdor -->
 		<If Condition="Me.MapId == 1">
-			<If Condition="Me.HearthstoneAreaId == 3425" >
-				<CustomBehavior File="Message" 
-								Text="Our Innkeeper is set at Cenarion Hold." 
-								LogColor="Cyan" />
-								
-				<!-- Have hearthstone -->
-				<If Condition="HasItem(6948)">
-					<CustomBehavior File="Message" 
-									Text="Using Hearthstone." 
-									LogColor="Lime" />
-									
-					<CustomBehavior File="Misc\RunLua" 
-									Lua="UseItemByName(6948)" 
-									WaitTime="1000" />
-									
-					<CustomBehavior File="WaitTimer" 
-									WaitTime="15000" />				
-				</If> <!-- Have hearthstone -->
+			<CustomBehavior File="Message" 
+							Text="We are in Kalimdor." 
+							LogColor="Lime" />
+							
 			
-				<!-- Have Innkeeper's Daughter -->
-				<If Condition="HasItem(64488)">
-					<CustomBehavior File="Message" 
-									Text="Using Innkeeper's Daughter." 
-									LogColor="Lime" />
-										
-					<CustomBehavior File="Misc\RunLua" 
-									Lua="UseItemByName(64488)" 
-									WaitTime="1000" />
-						
-					<CustomBehavior File="WaitTimer" 
-									WaitTime="15000" />
-				</If> <!-- Have Innkeeper's Daughter -->
-				
-				<!-- Our hearth isn't set, we need to go to the zone -->
-				<Else>
-					<CustomBehavior File="Message" 
-									Text="Our Hearthstone isn't set in the proper location. Moving to set it." 
-									LogColor="Lime" />
-				
-					<CustomBehavior File="Message" 
-									Text="Flying to Cenarion Hold." 
-									LogColor="Lime" />
-				
-					<!-- Fly to the hover point above the innkeep -->
-					<CustomBehavior File="FlyTo" X="-6820.513" Y="756.1943" Z="84.18653" />
-
-					<!-- Front doorway of the inn -->
-					<CustomBehavior File="FlyTo" X="-6834.952" Y="746.7306" Z="42.62398" />
-					<CustomBehavior File="ForcedDismount" />
-
-					<!-- Run inside the inn -->
-					<RunTo X="-6866.751" Y="730.493" Z="45.6628" />
-					
-					<!-- Set hearthstone -->
-					<CustomBehavior File="Message" 
-									Text="Setting my Hearthstone." 
-									LogColor="Lime" />
-									
-					<CustomBehavior File="SetHearthstone" 
-									MobId="15174" 
-									X="-6868.039" Y="729.9135" Z="45.66359" />
-									
-					<!-- Run outside of inn -->
-					<RunTo X="-6834.952" Y="746.7306" Z="42.62398" />
-					
-					<!-- Hover point -->
-					<CustomBehavior File="FlyTo" X="-6820.513" Y="756.1943" Z="84.18653" />
-					
-					<CustomBehavior File="Message" 
-									Text="We are in Cenarion Hold." 
-									LogColor="Fuchsia" />
-				</Else> <!-- Set hearth -->
-			</If> <!-- Hearth check -->
-			
-			<!-- Repair/sell if necessary -->
-			<If Condition="(Me.LowestDurabilityPercent &lt; 0.95) || (Me.FreeBagSlots &lt; 25)" >	
+							
+			<!-- If I need to repair or sell -->
+			<If Condition="(Me.LowestDurabilityPercent &lt; 0.95) || (Me.FreeBagSlots &lt; 25)" >
 				<CustomBehavior File="Message" 
 								Text="Vendoring or repairing is necessary." 
+								LogColor="Fuchsia" />
+								
+				<CustomBehavior File="Message" 
+							Text="Flying to Cenarion Hold." 
+							LogColor="Lime" />
+				
+				<!-- Fly to the hover point above the innkeep -->
+				<CustomBehavior File="FlyTo" X="-6820.513" Y="756.1943" Z="84.18653" />
+				
+				<CustomBehavior File="Message" 
+								Text="We are in Cenarion Hold." 
 								LogColor="Fuchsia" />
 				
 				<CustomBehavior File="FlyTo" X="-6860.531" Y="754.4844" Z="42.40351" />
@@ -226,11 +169,11 @@
 						<Mailbox X="-6838.382" Y="736.2891" Z="42.15428" />
 					</Mailboxes>
 				</SetMailbox>
-			
+				
 				<!-- Fly to the hover point above the innkeep -->
 				<CustomBehavior File="FlyTo" X="-6820.513" Y="756.1943" Z="84.18653" />
-			</If> <!-- Repairing -->
-			
+			</If> <!-- Repair/sell -->
+						
 			<CustomBehavior File="Message" 
 							Text="Flying to Ahn'Qiraj." 
 							LogColor="Lime" />
