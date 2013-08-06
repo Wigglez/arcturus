@@ -187,7 +187,10 @@
 								Text="The Stonecore detected. Running out to reset."
 								LogColor="Cyan" />
 								
-				<!-- Teleporter has issues, we have to manually run back to the entrance -->
+				<!-- Use Stonecore Teleporter -->
+				<CustomBehavior File="InteractWith" 
+								MobId="51397" 
+								NumOfTimes="1" />
 				
 				<!-- Stand at portal -->
 				<RunTo X="851.052" Y="986.474" Z="317.266" />
