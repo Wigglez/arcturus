@@ -80,13 +80,16 @@
 								Text="Vendoring or repairing is necessary." 
 								LogColor="Fuchsia" />
 								
+				<!-- If I'm in the box -->
+				<If Condition="Me.X &gt; 973 &amp;&amp; Me.X &lt; 1073 &amp;&amp; Me.Y &gt; 594 &amp;&amp; Me.Y &lt; 694" >				
+					<!-- Outside temple -->
+					<CustomBehavior File="FlyTo" X="898.05" Y="500.645" Z="-22.99612" />	
+				</If> <!-- In box -->		
+									
 				<CustomBehavior File="Message" 
 									Text="Flying to Temple of Earth." 
 									LogColor="Lime" />
 				
-				<!-- Outside temple -->
-				<CustomBehavior File="FlyTo" X="898.05" Y="500.645" Z="-22.99612" />
-			
 				<!-- Fly to the hover point above the innkeep -->
 				<CustomBehavior File="FlyTo" X="980.4913" Y="520.0079" Z="-27.08499" />
 				
