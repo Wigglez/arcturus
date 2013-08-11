@@ -39,6 +39,8 @@
 	</ProtectedItems>
 
 	<Factions>
+		<!-- Midnight -->
+		7
 	</Factions>
 	
 	<QuestOrder>
@@ -152,12 +154,10 @@
 							LogColor="Cyan" />
 							
 			<!-- Open Gatehouse Door -->
-			<CustomBehavior File="InteractWith" 
-							MobId="183450"
-							ObjectType="Gameobject"
-							Range="4.75" 
-							NumOfTimes="1"						
-							X="-11100.5762" Y="-1992.92786" Z="49.8486061" />
+			<CustomBehavior File="InteractWith"
+							MobId="183450" 
+							NumOfTimes="1" 
+							X="-11100.58" Y="-1997.149" Z="49.8921" />
 							
 			<!-- Clear up to Midnight -->
 			<RunTo X="-11089.34" Y="-1927.623" Z="49.88885" />
@@ -203,12 +203,10 @@
 			<RunTo X="-11095.61" Y="-1993.368" Z="49.88253" />
 			
 			<!-- Open Gatehouse Door -->
-			<CustomBehavior File="InteractWith" 
-							MobId="183450"
-							ObjectType="Gameobject"
-							Range="4.75" 
-							NumOfTimes="1"						
-							X="-11100.5762" Y="-1992.92786" Z="49.8486061" />
+			<CustomBehavior File="InteractWith"
+							MobId="183450" 
+							NumOfTimes="1" 
+							X="-11100.58" Y="-1997.149" Z="49.8921" />
 							
 			<RunTo X="-11102" Y="-1998.2" Z="49.8921" />
 
